@@ -12,7 +12,6 @@ PicoVerse 2350 Core2350B board;
 Open [`neo9990.kicad_pro`](../hardware/core2350b/neo9990/neo9990.kicad_pro) in
 KiCad 10.
 
-- [Schematic PDF](../hardware/core2350b/neo9990/plots/schematic.pdf)
 - [3D render, front](../hardware/core2350b/neo9990/plots/board-3d.png)
 - [3D render, rear](../hardware/core2350b/neo9990/plots/board-back-3d.png)
 - [GPIO assignment](../hardware/core2350b/neo9990/gpio-map.csv)
