@@ -1,0 +1,79 @@
+;
+; NEO9990 MSX bus front end for the Waveshare Core2350B, which sits directly
+; on the MSX slot (no decoder chip, no level translators).
+;
+; Pin mapping, PIO block with GPIOBASE 0 (GP0-GP31, see board_pins.h)
+;   in_base  = GP0  : bit n of a `mov x, pins` snapshot is GPn
+;   out_base = GP4  : D0-D7
+;   set_pins = GP29 : /WAIT (bit 0) and /BUSDIR (bit 1). Both are open
+;                     collector style: the output latch is 0 and `set pindirs`
+;                     pulls the line low or lets go of it.
+;   jmp_pin  = GP26 : /RD
+;
+; neo_bus_monitor looks at every I/O cycle. Cycles aimed at the emulated port
+; block are reported to core1 through a DMA ring; for a read cycle it also pulls
+; /WAIT and /BUSDIR low immediately and wakes neo_bus_read.
+;
+;   IRQ 6, monitor -> read machine : a decoded read cycle is under way
+;   IRQ 4, core1   -> read machine : all earlier accesses have been applied
+;   IRQ 5, read machine -> core1   : the answer byte was taken
+;
+; Event word = snapshot of GP0-GP31 once the cycle has settled:
+; A0-A3 in bits 0-3, D0-D7 in bits 4-11, /RD in bit 26.
+;
+; Timing at clk_sys = 384MHz (2.6ns per instruction): /IORQ falls, then
+; DECODE_SETTLE cycles let /RD and the address settle, five cycles decode, and
+; /WAIT and /BUSDIR drop right after /RD has been sampled.
+;
+
+.program neo_bus_monitor
+.define PUBLIC PIN_IORQ 25
+.define PUBLIC DECODE_SETTLE 5
+.define PUBLIC WRITE_SETTLE 14
+; y = expected decode field (A4 A5 A6 A7 /M1 /IORQ), loaded at init.
+; OSR shifts right, ISR shifts left, no autopush.
+start:
+.wrap_target
+    wait 1 gpio PIN_IORQ                    ; the previous cycle is over
+    wait 0 gpio PIN_IORQ [DECODE_SETTLE]    ; an I/O cycle started: let it settle
+    mov osr, pins
+    out null, 20                            ; skip GP0-GP19
+    out x, 6                                ; x = A4 A5 A6 A7 /M1 /IORQ
+    jmp x != y start                        ; another port, or an interrupt acknowledge
+    jmp pin is_write                        ; /RD high: write cycle
+    set pindirs, 3                          ; read: /WAIT and /BUSDIR low
+    irq set 6                               ; wake the read state machine
+    jmp record
+is_write:
+    nop [WRITE_SETTLE]                      ; data bus settles
+record:
+    mov isr, pins                           ; the snapshot core1 decodes
+    push noblock
+.wrap
+
+
+.program neo_bus_read
+.define PUBLIC PIN_IORQ 25
+; x = response table address >> 6 (16 words, 64 byte aligned).
+; The word pushed is the address of the response word for the port; a DMA
+; channel fetches that word into the TX FIFO.
+; ISR shifts left, OSR shifts right, no autopush/autopull.
+.wrap_target
+idle:
+    mov isr, x
+    wait 1 irq 6                            ; decoded read cycle (/WAIT, /BUSDIR low)
+    wait 1 irq 4                            ; core1 has caught up with this read
+    in pins, 4                              ; port number (A0-A3)
+    in null, 2                              ; * 4 bytes
+    push block
+    pull block                              ; response byte from the table
+    irq set 5                               ; value taken
+    out pins, 8
+    mov osr, ~null
+    out pindirs, 8                          ; drive D0-D7
+    set pindirs, 2                          ; release /WAIT, keep /BUSDIR
+    wait 1 gpio PIN_IORQ                    ; end of the cycle
+    mov osr, null
+    out pindirs, 8                          ; release the data bus
+    set pindirs, 0                          ; release /BUSDIR
+.wrap

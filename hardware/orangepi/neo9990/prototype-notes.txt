@@ -1,0 +1,177 @@
+NEO9990 REV D - PARALLEL HOST / FULL ROM BUS / OPTIONAL OPL4
+=========================================================
+
+Hardware/CPLD prototype, not a completed emulator cartridge.
+No complete bare-metal V9990, ROM BIOS/loader/mapper backend, OPL4 synthesis backend
+or H618 HDMI-audio driver is provided. Do not fabricate until the release
+gates below are closed. CAD/simulation success is not hardware timing proof.
+software/orangepi/firmware/README.txt describes the limited native v0.1 bring-up
+subset. It requires a preinitialized framebuffer; native HDMI setup and
+actual board/cartridge operation are not verified.
+
+Changes
+-------
+The former per-byte SPI link is replaced by a 16-bit parallel host mailbox.
+MSX A8-A15, MREQ and SLTSL are now connected alongside existing A0-A7/data/
+strobes. ROM reads and mapper writes can be served from Orange Pi RAM.
+There is NO added SRAM, sample-ROM chip or MCU.
+Two active ICs remain: U1 EPM7160STC100-10 on BACK; U5 TPS2553DBVR on FRONT.
+J5 adds BOOT-ROM enable; four 4x100k isolated resistor arrays bias idle data.
+The original cartridge contacts/outline and Orange Pi mounting are unchanged.
+
+Voltage domains / safety
+------------------------
+U1 VCCINT 39/91 = fused 5 V; VCCIO 3/18/34/51/66/82 = Pi-derived 3.3 V.
+GND 11/26/38/43/59/74/86/95. Both rails require local decoupling.
+The device is not a 3.3 V-core CPLD: never connect VCCINT to 3.3 V.
+Inputs have TTL thresholds and accept 5 V MSX / 3.3 V Pi signals.
+Every host-data/output pin is powered by 3.3 V VCCIO. Raw MSX nets, including
+RESET/CLOCK, never connect directly to Pi GPIOs.
+WAIT/INT/BUSDIR must be programmed open-drain; their 5 V MSX pullups are allowed
+by MAX7000S MultiVolt behavior. These nets never reach Pi GPIOs.
+MSX read-data highs are 3.3 V TTL-compatible, not 5 V CMOS rail highs.
+Verify the actual host/expander thresholds, load, power-off behavior and GPIO
+overshoot. Do not assume safe analog sequencing from a clean DRC.
+
+GPIO / bus connection
+---------------------
+PI0-PI15 = HOST_D0-D15; PI16 = HOST_REQUEST.
+PH0/PH1 UART TX/RX, PH2/PH3 HOST_RD_N/HOST_WR_N, PH4/PH5 SEL0/SEL1,
+PH6 READY, PH7 IRQ_N, PH8 forwarded RESET_N, PH9 forwarded MSX CLOCK.
+PC12 is the only spare header GPIO. All signals are 3.3 V logic.
+RD/WR default high, SEL0/1 low, READY low, IRQ_N high. Data has weak pulldowns.
+Host data is bidirectional: disable RD before output direction, and release
+outputs before asserting RD. Overlapping strobes are invalid and reported.
+Use appropriate H618 GPIO pin mux, barriers, access/setup/hold times.
+No Linux scheduler or generic SPI transactions are part of this interface.
+One outstanding request is held by CPLD WAIT, with a token-checked reply.
+The 16-bit address and write byte remain stable until host acknowledgement.
+
+Supported decode profiles
+-------------------------
+Firmware enables any combination of:
+V9990 I/O 60-6F; memory/ROM using full address, MREQ and SLTSL; OPL4 I/O
+C4-C7 and 7E-7F (matches the PicoVerse 2350 standalone OPL4 reference).
+I/O interrupt acknowledgements and memory refresh cycles are excluded.
+ROM page mask selects individual 16K CPU pages; default pages 1/2.
+The CPLD forwards memory writes for software mapper emulation; no mapper bank
+storage or ROM bytes are implemented in the CPLD itself.
+Only enable profiles that have working backend software. Unknown/unimplemented
+device reads must not be acknowledged with made-up success data.
+The slot detection SW1/SW2 contacts remain linked.
+
+BOOT-ROM J5 / firmware lifecycle
+--------------------------------
+J5 installed: BOOT_ROM=1. Default ROM pages 4000-BFFF hold the MSX's first
+selected access while the Pi initializes and loads a BIOS into its own RAM.
+J5 removed: no ROM boot stall/claim until firmware enables memory mode.
+V9990 and OPL4 are disabled until host configuration.
+Change the jumper only with power off. A failed Pi boot in ROM mode can leave
+the MSX waiting indefinitely; no timeout fabricates a BIOS byte.
+This behavior requires valid CPLD core AND I/O supplies before cartridge
+probing. Measure their rise time/sequence; this is not a power-fail guarantee.
+The Pi initializes data/control GPIOs, loads memory/backends, configures the
+profile/page mask while READY=0, then raises READY.
+MSX reset disarms the frontend even if READY stays high. Host software must
+drop READY, reset backends/mapper, reconfigure and raise READY again.
+The exact parallel ABI and CDC/reset contract are in
+software/orangepi/cpld/README.txt.
+ROM switching must not overwrite the Z80's currently executing bank. Use an
+MSX-RAM launcher or preserve a BIOS execution bank during coordinated changes.
+
+V9990 / future OPL4 and HDMI audio
+---------------------------------
+Existing Mini-HDMI stays on the Orange Pi. The planned video/audio output uses
+the H618's internal HDMI path; no DAC or external I2S header wiring is added.
+This covers synthesized cartridge audio, not capture/mixing of existing MSX
+PSG/FM audio or the original MSX VDP output.
+PicoVerse 2350 provides OPL4 port/ymfm/status/sample-buffer references.
+Its RP2350 PIO/I2S/DMA code is NOT an H618 HDMI audio driver.
+Bare-metal HDMI audio requires verified clocks, DMA/buffering, sample format,
+display compatibility and synchronization; none is implemented or claimed.
+OPL4 samples and RAM live in Pi memory. No proprietary wave ROM is included.
+Future firmware must preserve emulator state ownership and ordering of reads,
+writes, command completion and IRQs while audio/video rendering runs.
+ROM speed must be benchmarked against PicoVerse under the same MSX/turbo
+profile and simultaneous video/audio load. CPU frequency alone proves nothing.
+
+CPLD / JTAG
+------------
+U1 EPM7160STC100-10, 160 macrocells, TQFP100; 61 functional pins allocated,
+19 available pins unused. Pin source: software/orangepi/cpld/pins.json, shared by CAD
+and Quartus assignments. HOST_WR_N uses dedicated clock pin 87; READY/RESET/
+MSX CLOCK use 88/89/90. See pin map for the full memory/parallel bus.
+JTAG TDI=4, TMS=15, TCK=62, TDO=73 remains reserved.
+J4 front Altera 2x5: 1 TCK, 2 GND, 3 TDO, 4 target 3.3 V Vref, 5 TMS,
+6/7/8 NC, 9 TDI, 10 GND. TMS/TDI pull up to 3.3 V; TCK pulls down.
+Use a 3.3 V-compatible programmer. Vref is not an external supply input.
+Program on an isolated fixture with Pi installed for VCCIO, MSX disconnected,
+READY low, both CPLD supplies measured valid. Do not program in a running MSX.
+The fixture must bias unconnected MSX inputs to defined inactive/test levels;
+powering an unplugged board does not establish valid bus/reset/clock inputs.
+If using a Pi-less fixture, engineer both rails without back-powering any Pi.
+
+RELEASE HOLD: Quartus II 13.0 SP1 is unavailable here. No successful device
+fit, constrained timing, host-strobe/READY array-clock placement, product-term
+resource usage or POF is claimed. A simulation is not a fitted-device report.
+Before fabrication/programming, run the fixed-pin project with MAX7000S
+support and verify clock/control legality, 3.3 V delays, reset/CDC, all I/O
+setup/hold, open-drain assignments and actual timing.
+If pins must change, update pins.json and regenerate BOTH hardware and QSF.
+
+Power - restricted host
+-----------------------
+The user specified 5 V / 2 A available at the slot, not independently measured.
+Do not assume an ordinary MSX slot supports this. Verify PSU, wiring, contact
+ratings, total load, voltage drop and temperature.
+Both +5 V contacts feed F1 (2 A fast) and +5V_FUSED.
+U1 core uses fused 5 V outside U5's limiter. U5 supplies Pi 5 V, nominal
+~1.51 A limit (~1.41-1.63 A for R1=16.9k 1%).
+Total includes Pi, CPLD core and I/O drawn from Pi's 3.3 V regulator.
+Measure 3.3 V current allowance and transients, especially the wider data bus.
+Pi vendor recommends 5 V / 2-3 A: some workloads may exceed this prototype.
+No separate USB-C/USB VBUS power while installed; no hot insertion; common GND.
+U5 reverse protection is not a power mux or galvanic isolation.
+TP8 FAULT is pulled to 5 V and MUST NOT be connected directly to a GPIO.
+
+Mechanics / assembly / CAD
+--------------------------
+Pi orientation/socket/holes/STEP offset remain unchanged (component-side UP,
+nominal 8 mm board-to-module-bottom spacing). U1 and most decoupling are on
+BACK; some opposite-side capacitors avoid the through-hole socket.
+Check back-case clearance and the real socket stack/HDMI/SD/heatsink/antenna.
+PicoVerse 1.41 original outline, internal cutouts, case holes and all 50 edge
+contacts are preserved, 1.6 mm board. No new mechanical cutout is added.
+Pi model is nominal, not manufacturer mechanical CAD; a 1:1 physical fit check
+is mandatory. Gold contact finish/bevel and contact current rating need review.
+Four layers: F.Cu / continuous In1.Cu GND / In2.Cu power+signals / B.Cu.
+Signal target 0.20 mm with 0.15 mm neckdown/min clearance; Pi power trunk 1.5 mm,
+slot feed 1.2 mm. Use a capable fabricator and verify copper/current/heat.
+Reference designators are on F.Fab/B.Fab; BOM Side column identifies assembly.
+The joint data fanout uses protected tracks/vias so routing cannot box in
+adjacent pads. Unlock those only as part of a checked fanout/routing change.
+plots contains front/back assembly/3D and schematic views.
+erc.json/drc.json and the validation scripts check CAD, not analog timing.
+generate_prototype.py replaces PCB routing; do not run it as a validation step.
+Use routing.py --prepared to export existing routing. Before dangling-copper
+cleanup, run finish_board.py --split-junctions and a fresh DRC: a long track
+with a dead end can still carry useful mid-track connections.
+No Gerbers are released while the stated gates remain open.
+
+Current rev-D validation
+------------------------
+KiCad 10.0.6: ERC 0 violations; DRC 0 violations, 0 unconnected items,
+0 schematic-parity issues. All nets are routed under the configured rules.
+Actual netlist/pin/rail checks and original-outline/contact checks pass.
+Functional HDL: 919809 checks passed. Portable C protocol: 262156 checks passed.
+The schematic PDF, front/back assembly drawings and 3D previews are rev D.
+These results do not close the Quartus, physical timing, power or fit gates.
+
+References
+----------
+Altera MAX7000 datasheet (MultiVolt/open-drain):
+https://github.com/brijohn/qx10/blob/master/kicad/memory_expansion/m7000.pdf
+Altera-generated TQFP100 supply/JTAG pin cross-check:
+https://github.com/RBSC/SFG_Cartridge/blob/master/Firmware/Sources/SFG05S.pin
+PicoVerse local 2350/software/loadrom.pio/pico/opl4 (ports/ymfm/I2S reference).
+Orange Pi Zero 2W V1.1 manufacturer pinout; TI TPS2553 datasheet.

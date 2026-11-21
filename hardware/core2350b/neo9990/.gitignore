@@ -1,0 +1,6 @@
+__pycache__/
+*.kicad_prl
+*.lck
+fp-info-cache
+*-backups/
+hardware\core2350b\neo9990\tools

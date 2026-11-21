@@ -1,0 +1,51 @@
+Reference,Value,Footprint,MPN,Description,Side
+J1,MSX_CARTRIDGE,neo9990:MSX_Cartridge,,PicoVerse 2040 1.41 original edge geometry and pad sides,F.Cu
+J2,ORANGE_PI_ZERO_2W,neo9990:OrangePi_Zero2W,,Socketed above carrier; verify nominal mechanics with physical module,F.Cu
+U1,EPM7160STC100-10,Package_QFP:TQFP-100_14x14mm_P0.5mm,EPM7160STC100-10,"MAX7000S back side; VCCINT=5 V, VCCIO=Pi 3.3 V; vendor fitting required",B.Cu
+J4,ALTERA_JTAG_3V3_VREF,Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Vertical,,Altera 2x5 pinout; 3.3 V Vref from Pi; both CPLD rails required,F.Cu
+J5,BOOT_ROM_ENABLE,Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical,,Jumper installed: hold first ROM access until Pi BIOS is ready; power-off changes only,F.Cu
+U5,TPS2553DBVR,Package_TO_SOT_SMD:SOT-23-6,TPS2553DBVR,"Soft start, reverse-voltage protection, adjustable current limit",F.Cu
+F1,2A_FAST,Fuse:Fuse_1206_3216Metric,0467002.NR,Littelfuse 467; host must independently support stated 2 A,F.Cu
+R1,16.9k 1%,Resistor_SMD:R_0603_1608Metric,,,F.Cu
+R2,10k,Resistor_SMD:R_0603_1608Metric,,,F.Cu
+R3,10k,Resistor_SMD:R_0603_1608Metric,,,F.Cu
+R4,10k,Resistor_SMD:R_0603_1608Metric,,,F.Cu
+R5,10k,Resistor_SMD:R_0603_1608Metric,,,F.Cu
+R6,10k,Resistor_SMD:R_0603_1608Metric,,,F.Cu
+R7,10k,Resistor_SMD:R_0603_1608Metric,,,F.Cu
+R8,10k,Resistor_SMD:R_0603_1608Metric,,,F.Cu
+R9,10k,Resistor_SMD:R_0603_1608Metric,,,F.Cu
+R10,10k,Resistor_SMD:R_0603_1608Metric,,,F.Cu
+R11,10k,Resistor_SMD:R_0603_1608Metric,,,F.Cu
+R12,10k,Resistor_SMD:R_0603_1608Metric,,,F.Cu
+RP1,4x100k_ISOLATED,Resistor_SMD:R_Array_Convex_4x0603,,Four isolated 100k pulldowns; defined idle level for host data bus,F.Cu
+RP2,4x100k_ISOLATED,Resistor_SMD:R_Array_Convex_4x0603,,Four isolated 100k pulldowns; defined idle level for host data bus,F.Cu
+RP3,4x100k_ISOLATED,Resistor_SMD:R_Array_Convex_4x0603,,Four isolated 100k pulldowns; defined idle level for host data bus,F.Cu
+RP4,4x100k_ISOLATED,Resistor_SMD:R_Array_Convex_4x0603,,Four isolated 100k pulldowns; defined idle level for host data bus,F.Cu
+C1,10u 16V,Capacitor_SMD:C_0805_2012Metric,,,F.Cu
+C2,100n 16V,Capacitor_SMD:C_0603_1608Metric,,,F.Cu
+C3,47u 10V,Capacitor_SMD:C_1210_3225Metric,,,F.Cu
+C4,100n 16V,Capacitor_SMD:C_0603_1608Metric,,,F.Cu
+C5,100n 16V,Capacitor_SMD:C_0603_1608Metric,,,F.Cu
+C6,100n 16V,Capacitor_SMD:C_0603_1608Metric,,,B.Cu
+C7,100n 16V,Capacitor_SMD:C_0603_1608Metric,,,B.Cu
+C8,100n 16V,Capacitor_SMD:C_0603_1608Metric,,,B.Cu
+C9,100n 16V,Capacitor_SMD:C_0603_1608Metric,,,F.Cu
+C10,100n 16V,Capacitor_SMD:C_0603_1608Metric,,,B.Cu
+C11,100n 16V,Capacitor_SMD:C_0603_1608Metric,,,B.Cu
+C12,100n 16V,Capacitor_SMD:C_0603_1608Metric,,,B.Cu
+C13,4.7u 16V,Capacitor_SMD:C_0805_2012Metric,,,B.Cu
+C14,4.7u 10V,Capacitor_SMD:C_0805_2012Metric,,,B.Cu
+J3,UART0_3V3,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,,,F.Cu
+TP1,+5V_SLOT,TestPoint:TestPoint_Pad_D1.0mm,,,F.Cu
+TP2,+5V_OPI,TestPoint:TestPoint_Pad_D1.0mm,,,F.Cu
+TP3,+3V3_OPI,TestPoint:TestPoint_Pad_D1.0mm,,,F.Cu
+TP4,GND,TestPoint:TestPoint_Pad_D1.0mm,,,F.Cu
+TP5,HOST_REQUEST,TestPoint:TestPoint_Pad_D1.0mm,,,F.Cu
+TP6,HOST_READY,TestPoint:TestPoint_Pad_D1.0mm,,,F.Cu
+TP7,HOST_WR_N,TestPoint:TestPoint_Pad_D1.0mm,,,F.Cu
+TP8,PWR_FAULT_N,TestPoint:TestPoint_Pad_D1.0mm,,,F.Cu
+H1,M2_4mm_OD_STANDOFF,neo9990:ModuleStandoff,,"2.7 mm hole; M2 insulated hardware, spacer OD <= 4 mm, height >= 8 mm",F.Cu
+H2,M2_4mm_OD_STANDOFF,neo9990:ModuleStandoff,,"2.7 mm hole; M2 insulated hardware, spacer OD <= 4 mm, height >= 8 mm",F.Cu
+H3,M2_4mm_OD_STANDOFF,neo9990:ModuleStandoff,,"2.7 mm hole; M2 insulated hardware, spacer OD <= 4 mm, height >= 8 mm",F.Cu
+H4,M2_4mm_OD_STANDOFF,neo9990:ModuleStandoff,,"2.7 mm hole; M2 insulated hardware, spacer OD <= 4 mm, height >= 8 mm",F.Cu

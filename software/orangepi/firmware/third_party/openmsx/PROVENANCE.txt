@@ -1,0 +1,31 @@
+openMSX V9990 reference snapshot
+===============================
+Repository: https://github.com/openMSX/openMSX
+Revision: a557de7b37bc48420b63ec10e7ede953babad4f9
+Retrieved: 2026-10-26
+Original directory: src/video/v9990/
+Original authors: see authors.txt (upstream doc/authors.txt).
+License: GNU General Public License version 2; see ../../COPYING.
+
+Upstream README states that files without an individual notice use the
+GPL text in doc/GPL.txt. These selected source files contain no overriding
+license. No proprietary V9990 BIOS, fonts, game ROMs or sample data is included.
+
+V9990.cc / V9990.hh: port/register numbering, access/write masks, register
+selection, VRAM read buffer, palette stepping/masks, reset and IRQ semantics.
+V9990VRAM.cc / .hh: 512 KiB, power-on fill and P1/P2/Bx CPU address transforms.
+V9990DisplayTiming.hh: unified 42,954,540 Hz clock and NTSC/PAL constants.
+V9990BitmapConverter.cc: B1 BP4/BP6 pixel extraction and palette indexing.
+
+The adjacent original files are reference source, not separately compiled.
+The modified/adapted implementation is ../../src/v9990.c, rewritten in C
+with fixed storage, a small explicit-time scheduler and a scanline RGB API.
+The command engine, pattern/sprite rasterizers, SDL integration, save states,
+debugger, Tcl settings and openMSX device/motherboard dependencies are NOT
+ported. This is not a complete drop-in extraction of openMSX's V9990 device.
+
+Modifications made in 2026 for neo9990: portable C adaptation, subset guards,
+native boot/GPIO/framebuffer integration and tests. All new firmware files
+in this subtree use GPL-2.0-only. Retain these notices and ship corresponding
+source, build scripts and COPYING with any distributed derived binary.
+The repository's hardware/documentation license is not changed by this file.

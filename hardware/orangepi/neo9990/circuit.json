@@ -1,0 +1,1445 @@
+{
+  "parts": [
+    {
+      "ref": "J1",
+      "value": "MSX_CARTRIDGE",
+      "kind": "MSX_Cartridge",
+      "footprint": "neo9990:MSX_Cartridge",
+      "nets": {
+        "+5V1": "+5V_SLOT",
+        "+5V2": "+5V_SLOT",
+        "+12V": null,
+        "-12V": null,
+        "/BUSDIR": "MSX_BUSDIR_N",
+        "/CS1": null,
+        "/CS2": null,
+        "/CS12": null,
+        "/INT": "MSX_INT_N",
+        "/IORQ": "MSX_IORQ_N",
+        "/M1": "MSX_M1_N",
+        "/MREQ": "MSX_MREQ_N",
+        "/RD": "MSX_RD_N",
+        "/RESET": "MSX_RESET_N",
+        "/RESV1": null,
+        "/RESV2": null,
+        "/RFSH": null,
+        "/SLTSL": "MSX_SLTSL_N",
+        "/WAIT": "MSX_WAIT_N",
+        "/WR": "MSX_WR_N",
+        "A0": "MSX_A0",
+        "A1": "MSX_A1",
+        "A2": "MSX_A2",
+        "A3": "MSX_A3",
+        "A4": "MSX_A4",
+        "A5": "MSX_A5",
+        "A6": "MSX_A6",
+        "A7": "MSX_A7",
+        "A8": "MSX_A8",
+        "A9": "MSX_A9",
+        "A10": "MSX_A10",
+        "A11": "MSX_A11",
+        "A12": "MSX_A12",
+        "A13": "MSX_A13",
+        "A14": "MSX_A14",
+        "A15": "MSX_A15",
+        "CLOCK": "MSX_CLOCK",
+        "D0": "MSX_D0",
+        "D1": "MSX_D1",
+        "D2": "MSX_D2",
+        "D3": "MSX_D3",
+        "D4": "MSX_D4",
+        "D5": "MSX_D5",
+        "D6": "MSX_D6",
+        "D7": "MSX_D7",
+        "GND1": "GND",
+        "GND2": "GND",
+        "SOUNDIN": null,
+        "SW1": "MSX_SW_LINK",
+        "SW2": "MSX_SW_LINK"
+      },
+      "position": [
+        147.41,
+        86.81
+      ],
+      "sheet_position": [
+        53.34,
+        106.68
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "PicoVerse 2040 1.41 original edge geometry and pad sides",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "cb972f9c-c193-5bfd-8b48-c7bcf69a0259"
+    },
+    {
+      "ref": "J2",
+      "value": "ORANGE_PI_ZERO_2W",
+      "kind": "OrangePi_Zero2W",
+      "footprint": "neo9990:OrangePi_Zero2W",
+      "nets": {
+        "1": "+3V3_OPI",
+        "2": "+5V_OPI",
+        "3": "HOST_D8",
+        "4": "+5V_OPI",
+        "5": "HOST_D7",
+        "6": "GND",
+        "7": "HOST_D13",
+        "8": "UART0_TX",
+        "9": "GND",
+        "10": "UART0_RX",
+        "11": "HOST_RD_N",
+        "12": "HOST_D1",
+        "13": "HOST_WR_N",
+        "14": "GND",
+        "15": "HOST_D5",
+        "16": "HOST_D14",
+        "17": "+3V3_OPI",
+        "18": "HOST_SEL0",
+        "19": "HOST_IRQ_N",
+        "20": "GND",
+        "21": "HOST_RESET_N",
+        "22": "HOST_D6",
+        "23": "HOST_READY",
+        "24": "HOST_SEL1",
+        "25": "GND",
+        "26": "HOST_MSX_CLOCK",
+        "27": "HOST_D10",
+        "28": "HOST_D9",
+        "29": "HOST_D0",
+        "30": "GND",
+        "31": "HOST_D15",
+        "32": "HOST_D11",
+        "33": "HOST_D12",
+        "34": "GND",
+        "35": "HOST_D2",
+        "36": null,
+        "37": "HOST_REQUEST",
+        "38": "HOST_D4",
+        "39": "GND",
+        "40": "HOST_D3"
+      },
+      "position": [
+        170.85,
+        86.656051
+      ],
+      "sheet_position": [
+        152.4,
+        88.9
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "Socketed above carrier; verify nominal mechanics with physical module",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "f178cae4-52b7-5fef-a0ca-2fb24effbeae"
+    },
+    {
+      "ref": "U1",
+      "value": "EPM7160STC100-10",
+      "kind": "EPM7160STC100",
+      "footprint": "Package_QFP:TQFP-100_14x14mm_P0.5mm",
+      "nets": {
+        "60": "MSX_A0",
+        "63": "MSX_A1",
+        "67": "MSX_A2",
+        "68": "MSX_A3",
+        "70": "MSX_A4",
+        "72": "MSX_A5",
+        "75": "MSX_A6",
+        "77": "MSX_A7",
+        "79": "MSX_A8",
+        "71": "MSX_A9",
+        "64": "MSX_A10",
+        "69": "MSX_A11",
+        "76": "MSX_A12",
+        "78": "MSX_A13",
+        "96": "MSX_A14",
+        "97": "MSX_A15",
+        "98": "MSX_D0",
+        "50": "MSX_D1",
+        "48": "MSX_D2",
+        "52": "MSX_D3",
+        "53": "MSX_D4",
+        "54": "MSX_D5",
+        "55": "MSX_D6",
+        "57": "MSX_D7",
+        "80": "MSX_IORQ_N",
+        "65": "MSX_RD_N",
+        "1": "MSX_WR_N",
+        "83": "MSX_M1_N",
+        "85": "MSX_WAIT_N",
+        "84": "MSX_INT_N",
+        "81": "MSX_BUSDIR_N",
+        "92": "MSX_MREQ_N",
+        "93": "MSX_SLTSL_N",
+        "33": "HOST_D0",
+        "44": "HOST_D1",
+        "29": "HOST_D2",
+        "27": "HOST_D3",
+        "28": "HOST_D4",
+        "40": "HOST_D5",
+        "37": "HOST_D6",
+        "47": "HOST_D7",
+        "49": "HOST_D8",
+        "35": "HOST_D9",
+        "36": "HOST_D10",
+        "31": "HOST_D11",
+        "30": "HOST_D12",
+        "45": "HOST_D13",
+        "41": "HOST_D14",
+        "32": "HOST_D15",
+        "2": "HOST_SEL0",
+        "5": "HOST_SEL1",
+        "6": "HOST_RD_N",
+        "87": "HOST_WR_N",
+        "88": "HOST_READY",
+        "89": "MSX_RESET_N",
+        "90": "MSX_CLOCK",
+        "7": "HOST_REQUEST",
+        "8": "HOST_IRQ_N",
+        "9": "HOST_RESET_N",
+        "10": "HOST_MSX_CLOCK",
+        "94": "BOOT_ROM",
+        "39": "+5V_FUSED",
+        "91": "+5V_FUSED",
+        "3": "+3V3_OPI",
+        "18": "+3V3_OPI",
+        "34": "+3V3_OPI",
+        "51": "+3V3_OPI",
+        "66": "+3V3_OPI",
+        "82": "+3V3_OPI",
+        "11": "GND",
+        "26": "GND",
+        "38": "GND",
+        "43": "GND",
+        "59": "GND",
+        "74": "GND",
+        "86": "GND",
+        "95": "GND",
+        "4": "JTAG_TDI",
+        "15": "JTAG_TMS",
+        "62": "JTAG_TCK",
+        "73": "JTAG_TDO",
+        "12": null,
+        "13": null,
+        "14": null,
+        "16": null,
+        "17": null,
+        "19": null,
+        "20": null,
+        "21": null,
+        "22": null,
+        "23": null,
+        "24": null,
+        "25": null,
+        "42": null,
+        "46": null,
+        "56": null,
+        "58": null,
+        "61": null,
+        "99": null,
+        "100": null
+      },
+      "position": [
+        149,
+        100
+      ],
+      "sheet_position": [
+        279.4,
+        96.52
+      ],
+      "angle": 0,
+      "side": "B.Cu",
+      "description": "MAX7000S back side; VCCINT=5 V, VCCIO=Pi 3.3 V; vendor fitting required",
+      "mpn": "EPM7160STC100-10",
+      "datasheet": "https://cdrdv2-public.intel.com/653012/m7000.pdf",
+      "uuid": "8f271a33-e67a-581d-8794-b57eca4fc70b"
+    },
+    {
+      "ref": "J4",
+      "value": "ALTERA_JTAG_3V3_VREF",
+      "kind": "JTAG_Altera_10",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Vertical",
+      "nets": {
+        "1": "JTAG_TCK",
+        "2": "GND",
+        "3": "JTAG_TDO",
+        "4": "+3V3_OPI",
+        "5": "JTAG_TMS",
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": "JTAG_TDI",
+        "10": "GND"
+      },
+      "position": [
+        185,
+        77
+      ],
+      "sheet_position": [
+        482.6,
+        63.5
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "Altera 2x5 pinout; 3.3 V Vref from Pi; both CPLD rails required",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "93da8266-0920-5dd2-ba76-3c28db5006e7"
+    },
+    {
+      "ref": "J5",
+      "value": "BOOT_ROM_ENABLE",
+      "kind": "Passive2",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
+      "nets": {
+        "1": "BOOT_ROM",
+        "2": "+3V3_OPI"
+      },
+      "position": [
+        102,
+        66
+      ],
+      "sheet_position": [
+        482.6,
+        104.14
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "Jumper installed: hold first ROM access until Pi BIOS is ready; power-off changes only",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "eed27fe7-2003-53ab-b6de-f02195089ae4"
+    },
+    {
+      "ref": "U5",
+      "value": "TPS2553DBVR",
+      "kind": "TPS2553DBV",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "nets": {
+        "1": "+5V_FUSED",
+        "2": "GND",
+        "3": "+5V_FUSED",
+        "4": "PWR_FAULT_N",
+        "5": "ILIM_SET",
+        "6": "+5V_OPI"
+      },
+      "position": [
+        111,
+        99
+      ],
+      "sheet_position": [
+        53.34,
+        238.76
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "Soft start, reverse-voltage protection, adjustable current limit",
+      "mpn": "TPS2553DBVR",
+      "datasheet": "https://www.ti.com/lit/gpn/tps2553",
+      "uuid": "3dc48d45-83f8-5657-a349-5238cc2b817e"
+    },
+    {
+      "ref": "F1",
+      "value": "2A_FAST",
+      "kind": "Passive2",
+      "footprint": "Fuse:Fuse_1206_3216Metric",
+      "nets": {
+        "1": "+5V_SLOT",
+        "2": "+5V_FUSED"
+      },
+      "position": [
+        111,
+        108
+      ],
+      "sheet_position": [
+        116.84,
+        226.06
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "Littelfuse 467; host must independently support stated 2 A",
+      "mpn": "0467002.NR",
+      "datasheet": "",
+      "uuid": "d91d21d3-5679-5155-8467-d6fb275889dc"
+    },
+    {
+      "ref": "#FLG01",
+      "value": "PWR_FLAG",
+      "kind": "PowerFlag",
+      "footprint": "",
+      "nets": {
+        "1": "+5V_FUSED"
+      },
+      "position": [
+        0,
+        0
+      ],
+      "sheet_position": [
+        165.1,
+        271.78000000000003
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "04fd9c37-25ec-5f6b-96d8-5c578d2b6297"
+    },
+    {
+      "ref": "R1",
+      "value": "16.9k 1%",
+      "kind": "Passive2",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "nets": {
+        "1": "ILIM_SET",
+        "2": "GND"
+      },
+      "position": [
+        111,
+        94
+      ],
+      "sheet_position": [
+        116.84,
+        248.92000000000002
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "bd810b7a-002e-5492-bff4-fa58f9496e5f"
+    },
+    {
+      "ref": "R2",
+      "value": "10k",
+      "kind": "Passive2",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "nets": {
+        "1": "+5V_FUSED",
+        "2": "PWR_FAULT_N"
+      },
+      "position": [
+        111,
+        88
+      ],
+      "sheet_position": [
+        116.84,
+        271.78000000000003
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "42d31ebc-c1e6-56c1-ab1f-173b1e1435da"
+    },
+    {
+      "ref": "R3",
+      "value": "10k",
+      "kind": "Passive2",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "nets": {
+        "1": "HOST_READY",
+        "2": "GND"
+      },
+      "position": [
+        177,
+        84
+      ],
+      "sheet_position": [
+        215.9,
+        231.14000000000001
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "97085e36-c72b-536d-bd73-eb42b97d8ec4"
+    },
+    {
+      "ref": "R4",
+      "value": "10k",
+      "kind": "Passive2",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "nets": {
+        "1": "HOST_IRQ_N",
+        "2": "+3V3_OPI"
+      },
+      "position": [
+        181,
+        84
+      ],
+      "sheet_position": [
+        261.62,
+        231.14000000000001
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "6a081379-5008-5010-9cf7-3abb456917b5"
+    },
+    {
+      "ref": "R5",
+      "value": "10k",
+      "kind": "Passive2",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "nets": {
+        "1": "HOST_RD_N",
+        "2": "+3V3_OPI"
+      },
+      "position": [
+        181,
+        95
+      ],
+      "sheet_position": [
+        215.9,
+        255.27
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "760c13cf-8b1b-58be-96e9-f8b8a8021670"
+    },
+    {
+      "ref": "R6",
+      "value": "10k",
+      "kind": "Passive2",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "nets": {
+        "1": "HOST_WR_N",
+        "2": "+3V3_OPI"
+      },
+      "position": [
+        172,
+        95
+      ],
+      "sheet_position": [
+        261.62,
+        255.27
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "947c6f62-90b7-5d97-807e-623ecbdb522c"
+    },
+    {
+      "ref": "R7",
+      "value": "10k",
+      "kind": "Passive2",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "nets": {
+        "1": "HOST_SEL0",
+        "2": "GND"
+      },
+      "position": [
+        168,
+        92
+      ],
+      "sheet_position": [
+        215.9,
+        279.4
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "de9acf25-833f-585a-b984-26320b0830b9"
+    },
+    {
+      "ref": "R8",
+      "value": "10k",
+      "kind": "Passive2",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "nets": {
+        "1": "JTAG_TCK",
+        "2": "GND"
+      },
+      "position": [
+        190,
+        74
+      ],
+      "sheet_position": [
+        261.62,
+        279.4
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "984e3bb8-c293-5c26-bc14-c59a777cb883"
+    },
+    {
+      "ref": "R9",
+      "value": "10k",
+      "kind": "Passive2",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "nets": {
+        "1": "JTAG_TMS",
+        "2": "+3V3_OPI"
+      },
+      "position": [
+        190,
+        69
+      ],
+      "sheet_position": [
+        215.9,
+        303.53000000000003
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "4ffd2beb-8f66-5482-bff1-9015551b6a8d"
+    },
+    {
+      "ref": "R10",
+      "value": "10k",
+      "kind": "Passive2",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "nets": {
+        "1": "JTAG_TDI",
+        "2": "+3V3_OPI"
+      },
+      "position": [
+        185,
+        69
+      ],
+      "sheet_position": [
+        261.62,
+        303.53000000000003
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "8167bd2e-4e17-543e-8e97-b96f3d43a204"
+    },
+    {
+      "ref": "R11",
+      "value": "10k",
+      "kind": "Passive2",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "nets": {
+        "1": "HOST_SEL1",
+        "2": "GND"
+      },
+      "position": [
+        177,
+        79
+      ],
+      "sheet_position": [
+        215.9,
+        326.39
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "6148fbf2-5a23-5ceb-9a18-d4ffe893e7da"
+    },
+    {
+      "ref": "R12",
+      "value": "10k",
+      "kind": "Passive2",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "nets": {
+        "1": "BOOT_ROM",
+        "2": "GND"
+      },
+      "position": [
+        107,
+        70
+      ],
+      "sheet_position": [
+        261.62,
+        326.39
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "45030f2c-4493-5e04-85fa-00f7d548c91a"
+    },
+    {
+      "ref": "RP1",
+      "value": "4x100k_ISOLATED",
+      "kind": "R_Array4",
+      "footprint": "Resistor_SMD:R_Array_Convex_4x0603",
+      "nets": {
+        "1": "HOST_D0",
+        "2": "HOST_D1",
+        "3": "HOST_D2",
+        "4": "HOST_D3",
+        "5": "GND",
+        "6": "GND",
+        "7": "GND",
+        "8": "GND"
+      },
+      "position": [
+        128,
+        96
+      ],
+      "sheet_position": [
+        351.79,
+        290.83
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "Four isolated 100k pulldowns; defined idle level for host data bus",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "9b752e43-4c66-525e-95f4-cca7572017ef"
+    },
+    {
+      "ref": "RP2",
+      "value": "4x100k_ISOLATED",
+      "kind": "R_Array4",
+      "footprint": "Resistor_SMD:R_Array_Convex_4x0603",
+      "nets": {
+        "1": "HOST_D4",
+        "2": "HOST_D5",
+        "3": "HOST_D6",
+        "4": "HOST_D7",
+        "5": "GND",
+        "6": "GND",
+        "7": "GND",
+        "8": "GND"
+      },
+      "position": [
+        128,
+        102
+      ],
+      "sheet_position": [
+        397.51,
+        290.83
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "Four isolated 100k pulldowns; defined idle level for host data bus",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "b69e64cc-7619-51be-bff6-0f69b0f86300"
+    },
+    {
+      "ref": "RP3",
+      "value": "4x100k_ISOLATED",
+      "kind": "R_Array4",
+      "footprint": "Resistor_SMD:R_Array_Convex_4x0603",
+      "nets": {
+        "1": "HOST_D8",
+        "2": "HOST_D9",
+        "3": "HOST_D10",
+        "4": "HOST_D11",
+        "5": "GND",
+        "6": "GND",
+        "7": "GND",
+        "8": "GND"
+      },
+      "position": [
+        166,
+        96
+      ],
+      "sheet_position": [
+        444.5,
+        290.83
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "Four isolated 100k pulldowns; defined idle level for host data bus",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "d877c40a-b073-5102-9cd9-c56ec3fb5668"
+    },
+    {
+      "ref": "RP4",
+      "value": "4x100k_ISOLATED",
+      "kind": "R_Array4",
+      "footprint": "Resistor_SMD:R_Array_Convex_4x0603",
+      "nets": {
+        "1": "HOST_D12",
+        "2": "HOST_D13",
+        "3": "HOST_D14",
+        "4": "HOST_D15",
+        "5": "GND",
+        "6": "GND",
+        "7": "GND",
+        "8": "GND"
+      },
+      "position": [
+        166,
+        102
+      ],
+      "sheet_position": [
+        490.22,
+        290.83
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "Four isolated 100k pulldowns; defined idle level for host data bus",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "6c2c84b2-d854-519d-9e36-4139cd727f03"
+    },
+    {
+      "ref": "C1",
+      "value": "10u 16V",
+      "kind": "Passive2",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "nets": {
+        "1": "+5V_FUSED",
+        "2": "GND"
+      },
+      "position": [
+        110,
+        104
+      ],
+      "sheet_position": [
+        307.34000000000003,
+        228.6
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "ed91ca22-796f-51fc-88d7-48826cd97fc9"
+    },
+    {
+      "ref": "C2",
+      "value": "100n 16V",
+      "kind": "Passive2",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "nets": {
+        "1": "+5V_FUSED",
+        "2": "GND"
+      },
+      "position": [
+        115,
+        102
+      ],
+      "sheet_position": [
+        350.52,
+        228.6
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "6deed90d-82b7-5fec-a6cb-41d8e6c402ac"
+    },
+    {
+      "ref": "C3",
+      "value": "47u 10V",
+      "kind": "Passive2",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "nets": {
+        "1": "+5V_OPI",
+        "2": "GND"
+      },
+      "position": [
+        112,
+        82
+      ],
+      "sheet_position": [
+        392.43,
+        228.6
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "6ab1c0e6-a65c-5aa4-8a55-fd38ea8001e7"
+    },
+    {
+      "ref": "C4",
+      "value": "100n 16V",
+      "kind": "Passive2",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "nets": {
+        "1": "+5V_OPI",
+        "2": "GND"
+      },
+      "position": [
+        115,
+        98
+      ],
+      "sheet_position": [
+        435.61,
+        228.6
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "bca51d59-62c2-54c3-a59c-88a2d3261f3f"
+    },
+    {
+      "ref": "C5",
+      "value": "100n 16V",
+      "kind": "Passive2",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "nets": {
+        "1": "+5V_FUSED",
+        "2": "GND"
+      },
+      "position": [
+        151,
+        94
+      ],
+      "sheet_position": [
+        478.79,
+        228.6
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "33688cbf-ac51-51fe-a0bd-e896e2b246a3"
+    },
+    {
+      "ref": "C6",
+      "value": "100n 16V",
+      "kind": "Passive2",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "nets": {
+        "1": "+5V_FUSED",
+        "2": "GND"
+      },
+      "position": [
+        145,
+        111
+      ],
+      "sheet_position": [
+        307.34000000000003,
+        247.65
+      ],
+      "angle": 0,
+      "side": "B.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "1c8c8932-84c5-5665-8eb7-52028abb36d1"
+    },
+    {
+      "ref": "C7",
+      "value": "100n 16V",
+      "kind": "Passive2",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "nets": {
+        "1": "+3V3_OPI",
+        "2": "GND"
+      },
+      "position": [
+        138.5,
+        105
+      ],
+      "sheet_position": [
+        350.52,
+        247.65
+      ],
+      "angle": 0,
+      "side": "B.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "6616fe1a-cc33-5c7c-a5fa-3598b4c6748e"
+    },
+    {
+      "ref": "C8",
+      "value": "100n 16V",
+      "kind": "Passive2",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "nets": {
+        "1": "+3V3_OPI",
+        "2": "GND"
+      },
+      "position": [
+        138.5,
+        97
+      ],
+      "sheet_position": [
+        392.43,
+        247.65
+      ],
+      "angle": 0,
+      "side": "B.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "d25adb89-2b3e-5705-8cac-211a93ee77b0"
+    },
+    {
+      "ref": "C9",
+      "value": "100n 16V",
+      "kind": "Passive2",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "nets": {
+        "1": "+3V3_OPI",
+        "2": "GND"
+      },
+      "position": [
+        146,
+        94
+      ],
+      "sheet_position": [
+        435.61,
+        247.65
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "bffe989c-f227-54e5-ad92-8ece28b3daef"
+    },
+    {
+      "ref": "C10",
+      "value": "100n 16V",
+      "kind": "Passive2",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "nets": {
+        "1": "+3V3_OPI",
+        "2": "GND"
+      },
+      "position": [
+        159.5,
+        94
+      ],
+      "sheet_position": [
+        478.79,
+        247.65
+      ],
+      "angle": 0,
+      "side": "B.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "67704d76-3423-5ca6-a521-9025176806db"
+    },
+    {
+      "ref": "C11",
+      "value": "100n 16V",
+      "kind": "Passive2",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "nets": {
+        "1": "+3V3_OPI",
+        "2": "GND"
+      },
+      "position": [
+        159.5,
+        102
+      ],
+      "sheet_position": [
+        307.34000000000003,
+        267.97
+      ],
+      "angle": 0,
+      "side": "B.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "4d7c83f4-4402-5374-ab6f-f7a2bda377c9"
+    },
+    {
+      "ref": "C12",
+      "value": "100n 16V",
+      "kind": "Passive2",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "nets": {
+        "1": "+3V3_OPI",
+        "2": "GND"
+      },
+      "position": [
+        152,
+        111
+      ],
+      "sheet_position": [
+        350.52,
+        267.97
+      ],
+      "angle": 0,
+      "side": "B.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "c5c45c22-70ff-5ff3-af21-3562d2f34cd5"
+    },
+    {
+      "ref": "C13",
+      "value": "4.7u 16V",
+      "kind": "Passive2",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "nets": {
+        "1": "+5V_FUSED",
+        "2": "GND"
+      },
+      "position": [
+        133,
+        96
+      ],
+      "sheet_position": [
+        392.43,
+        267.97
+      ],
+      "angle": 0,
+      "side": "B.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "a4f3e862-85e9-5b26-9caa-df613949a149"
+    },
+    {
+      "ref": "C14",
+      "value": "4.7u 10V",
+      "kind": "Passive2",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "nets": {
+        "1": "+3V3_OPI",
+        "2": "GND"
+      },
+      "position": [
+        165,
+        106
+      ],
+      "sheet_position": [
+        435.61,
+        267.97
+      ],
+      "angle": 0,
+      "side": "B.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "720d3a2d-8b2d-51f1-97cd-f686ba7f3ba1"
+    },
+    {
+      "ref": "J3",
+      "value": "UART0_3V3",
+      "kind": "Debug_UART",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
+      "nets": {
+        "1": "GND",
+        "2": "UART0_TX",
+        "3": "UART0_RX"
+      },
+      "position": [
+        102,
+        78
+      ],
+      "sheet_position": [
+        165.1,
+        243.84
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "649de9fa-652f-5f9b-bcf6-1f346c2ac920"
+    },
+    {
+      "ref": "TP1",
+      "value": "+5V_SLOT",
+      "kind": "TestPoint",
+      "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "nets": {
+        "1": "+5V_SLOT"
+      },
+      "position": [
+        122,
+        114
+      ],
+      "sheet_position": [
+        307.34000000000003,
+        330.2
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "e7ffd451-a8ab-5c0c-8659-998743e42a19"
+    },
+    {
+      "ref": "TP2",
+      "value": "+5V_OPI",
+      "kind": "TestPoint",
+      "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "nets": {
+        "1": "+5V_OPI"
+      },
+      "position": [
+        112,
+        85
+      ],
+      "sheet_position": [
+        364.49,
+        330.2
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "c4362e46-f444-5667-88e0-a435d846fd09"
+    },
+    {
+      "ref": "TP3",
+      "value": "+3V3_OPI",
+      "kind": "TestPoint",
+      "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "nets": {
+        "1": "+3V3_OPI"
+      },
+      "position": [
+        120,
+        96
+      ],
+      "sheet_position": [
+        422.91,
+        330.2
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "a4ce5bad-0f25-51f2-90ba-f7c0cdeee242"
+    },
+    {
+      "ref": "TP4",
+      "value": "GND",
+      "kind": "TestPoint",
+      "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "nets": {
+        "1": "GND"
+      },
+      "position": [
+        111,
+        112
+      ],
+      "sheet_position": [
+        481.33,
+        330.2
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "1b4da1c6-542e-5d1b-a1b6-c044b35a5e83"
+    },
+    {
+      "ref": "TP5",
+      "value": "HOST_REQUEST",
+      "kind": "TestPoint",
+      "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "nets": {
+        "1": "HOST_REQUEST"
+      },
+      "position": [
+        163,
+        111
+      ],
+      "sheet_position": [
+        307.34000000000003,
+        350.52
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "80793709-9f62-5737-b69d-d865dc857bed"
+    },
+    {
+      "ref": "TP6",
+      "value": "HOST_READY",
+      "kind": "TestPoint",
+      "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "nets": {
+        "1": "HOST_READY"
+      },
+      "position": [
+        181,
+        99
+      ],
+      "sheet_position": [
+        364.49,
+        350.52
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "fd8d066e-187a-5738-bb70-a6ea7e30c8aa"
+    },
+    {
+      "ref": "TP7",
+      "value": "HOST_WR_N",
+      "kind": "TestPoint",
+      "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "nets": {
+        "1": "HOST_WR_N"
+      },
+      "position": [
+        175,
+        106
+      ],
+      "sheet_position": [
+        422.91,
+        350.52
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "72f3e644-dbd6-5fe6-8193-3da13a69cd95"
+    },
+    {
+      "ref": "TP8",
+      "value": "PWR_FAULT_N",
+      "kind": "TestPoint",
+      "footprint": "TestPoint:TestPoint_Pad_D1.0mm",
+      "nets": {
+        "1": "PWR_FAULT_N"
+      },
+      "position": [
+        107,
+        88
+      ],
+      "sheet_position": [
+        481.33,
+        350.52
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "6fd40652-3164-5abf-9bdd-531f1e061ca9"
+    },
+    {
+      "ref": "H1",
+      "value": "M2_4mm_OD_STANDOFF",
+      "kind": "ModuleStandoff",
+      "footprint": "neo9990:ModuleStandoff",
+      "nets": {},
+      "position": [
+        116.5,
+        66.196051
+      ],
+      "sheet_position": [
+        119.38,
+        175.26
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "2.7 mm hole; M2 insulated hardware, spacer OD <= 4 mm, height >= 8 mm",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "aaffcbc1-092f-5587-bc3b-8f4b31048443"
+    },
+    {
+      "ref": "H2",
+      "value": "M2_4mm_OD_STANDOFF",
+      "kind": "ModuleStandoff",
+      "footprint": "neo9990:ModuleStandoff",
+      "nets": {},
+      "position": [
+        174.5,
+        66.196051
+      ],
+      "sheet_position": [
+        160.02,
+        175.26
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "2.7 mm hole; M2 insulated hardware, spacer OD <= 4 mm, height >= 8 mm",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "0ae91a8c-8511-5fed-9f92-137c560bebd9"
+    },
+    {
+      "ref": "H3",
+      "value": "M2_4mm_OD_STANDOFF",
+      "kind": "ModuleStandoff",
+      "footprint": "neo9990:ModuleStandoff",
+      "nets": {},
+      "position": [
+        116.5,
+        89.196051
+      ],
+      "sheet_position": [
+        199.39000000000001,
+        175.26
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "2.7 mm hole; M2 insulated hardware, spacer OD <= 4 mm, height >= 8 mm",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "0eebc80b-612e-5af8-89e6-1cac4fd4536c"
+    },
+    {
+      "ref": "H4",
+      "value": "M2_4mm_OD_STANDOFF",
+      "kind": "ModuleStandoff",
+      "footprint": "neo9990:ModuleStandoff",
+      "nets": {},
+      "position": [
+        174.5,
+        89.196051
+      ],
+      "sheet_position": [
+        240.03,
+        175.26
+      ],
+      "angle": 0,
+      "side": "F.Cu",
+      "description": "2.7 mm hole; M2 insulated hardware, spacer OD <= 4 mm, height >= 8 mm",
+      "mpn": "",
+      "datasheet": "",
+      "uuid": "36f36930-fd55-5113-9850-f852680905f3"
+    }
+  ],
+  "source_outline": "C:\\Users\\crisag\\OneDrive\\Personal\\11. Electronics\\PicoVerse\\GitHub\\msx-picoverse\\2040\\hardware\\ALIEXPRESS-RP2040-PURPLE\\1.41\\msx-picoverse.kicad_pcb",
+  "module": {
+    "body_mm": [
+      65,
+      30
+    ],
+    "origin_pin1_mm": [
+      170.85,
+      86.656051
+    ],
+    "mounting_pitch_mm": [
+      58,
+      23
+    ],
+    "standoff_min_mm": 8,
+    "mechanical_status": "Nominal Zero-format datums; verify physical board and HDMI shell before manufacture"
+  }
+}

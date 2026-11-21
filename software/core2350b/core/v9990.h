@@ -1,0 +1,170 @@
+/*
+ * NEO9990 V9990 core interface. Plain C with no Pico SDK dependency, so the
+ * same sources build into the firmware and into the host-side tests.
+ *
+ * Who touches what on the RP2350:
+ *   core1 : bus events (v9990_write_port / v9990_read_port) and the blitter
+ *           (v9990_cmd_step)
+ *   core0 : scanline rendering (v9990_render_line) and the video timing
+ *           callbacks (v9990_video_*)
+ * Registers are only ever written by core1; core0 reads them and flips the
+ * status and interrupt flag bits with atomic operations.
+ */
+#ifndef V9990_H
+#define V9990_H
+
+#include <stdbool.h>
+#include <stdint.h>
+#include "v9990_regs.h"
+
+#ifndef V9990_HOT
+#if defined(PICO_ON_DEVICE) && PICO_ON_DEVICE
+#define V9990_HOT __attribute__((section(".time_critical.v9990")))
+#else
+#define V9990_HOT
+#endif
+#endif
+
+/* status / int_flags are touched by both cores: use atomic bit operations. */
+#define V9990_SET_BITS(field, mask) \
+    ((void)__atomic_fetch_or(&(field), (uint8_t)(mask), __ATOMIC_RELAXED))
+#define V9990_CLR_BITS(field, mask) \
+    ((void)__atomic_fetch_and(&(field), (uint8_t)~(mask), __ATOMIC_RELAXED))
+#define V9990_XOR_BITS(field, mask) \
+    ((void)__atomic_fetch_xor(&(field), (uint8_t)(mask), __ATOMIC_RELAXED))
+
+typedef enum {
+    V9990_MODE_P1, V9990_MODE_P2,
+    V9990_MODE_B1, V9990_MODE_B2, V9990_MODE_B3, V9990_MODE_B4,
+    V9990_MODE_B5, V9990_MODE_B6,
+    V9990_MODE_B7,      /* undocumented: DCKM=2 without HSCN, 1024 wide */
+    V9990_MODE_STANDBY
+} v9990_display_mode_t;
+
+typedef enum {
+    V9990_COLOR_BP2, V9990_COLOR_BP4, V9990_COLOR_BP6, V9990_COLOR_BD8,
+    V9990_COLOR_BYJK, V9990_COLOR_BYJKP, V9990_COLOR_BYUV, V9990_COLOR_BYUVP,
+    V9990_COLOR_BD16
+} v9990_color_mode_t;
+
+typedef struct {
+    uint8_t r, g, b;   /* 5 bits each; bit7 of r = YS (transparent) */
+} v9990_palette_entry_t;
+
+/* Command engine state (see v9990_cmd.c) */
+typedef struct {
+    uint8_t  op;            /* active command (0 = idle) */
+    uint16_t sx, sy, dx, dy, nx, ny;
+    uint16_t x, y;          /* current destination position */
+    uint16_t src_x, src_y;  /* current source position (LMMM) */
+    uint16_t remaining_x, remaining_y;
+    uint16_t data_word;     /* LMMC/LMCM 16bpp byte assembly */
+    uint8_t  data_phase;
+    uint32_t src_addr;      /* CMMM, BMXL, BMLL: linear source byte address */
+    uint32_t dst_addr;      /* BMLX, BMLL: linear destination byte address */
+    uint32_t count;         /* BMLL: bytes (16bpp: words) left */
+    uint8_t  bits;          /* CMMM: current character byte */
+    uint8_t  bits_left;     /* CMMM: bits left in `bits` */
+    bool     end_after_read;    /* LMCM, POINT: the latched byte is the last */
+} v9990_cmd_state_t;
+
+typedef struct v9990 {
+    /* VRAM in physical layout (see v9990_vram.h), as two 256KB banks:
+     * physical 0x00000-0x3FFFF (VRAM0) and 0x40000-0x7FFFF (VRAM1). They
+     * may live in different memories (the firmware keeps VRAM0 in SRAM). */
+    uint8_t  *vram;         /* VRAM0 */
+    uint8_t  *vram1;        /* VRAM1 (vram + 0x40000 when contiguous) */
+
+    uint8_t  regs[V9990_NUM_REGS];
+    uint8_t  reg_select;    /* P#4 */
+    uint8_t  sys_ctrl;      /* P#7 */
+
+    volatile uint8_t status;    /* P#5; VR/HR/EO written by video timing */
+    volatile uint8_t int_flags; /* P#6 */
+
+    uint32_t vram_write_ptr;
+    uint32_t vram_read_ptr;
+    uint8_t  vram_read_latch;   /* prefetched byte returned by next P#0 read */
+
+    v9990_palette_entry_t palette[V9990_PALETTE_ENTRIES];
+    uint16_t palette_rgb565[V9990_PALETTE_ENTRIES]; /* cache for the renderer */
+
+    uint8_t  cmd_read_latch;    /* next byte for P#2 read (LMCM/POINT) */
+    v9990_cmd_state_t cmd;
+
+    /* Video timing state (written by core0's video driver) */
+    volatile uint16_t cur_line;       /* display line being started */
+    /* Writing the low byte of a vertical scroll register restarts that
+     * layer's line counter at the current line (verified on hardware
+     * according to openMSX); the high bytes are latched per frame. */
+    volatile uint16_t line_offset_a, line_offset_b;
+    uint8_t  scroll_ay_high, scroll_by_high;
+    volatile uint32_t frame;          /* counts vblank ends (renderer caches) */
+
+    /* Optional (kept by v9990_reset): copy `len` bytes of physical VRAM
+     * from `phys` to `dst`. The bitmap renderer fetches each row with it,
+     * so a platform with slow VRAM can use bulk transfers. NULL = memcpy. */
+    void (*vram_fetch)(const struct v9990 *v, uint32_t phys, uint8_t *dst, uint32_t len);
+    /* Optional (kept by v9990_reset): start copying `len` bytes of physical
+     * VRAM from `phys` to `dst` in the background (false = not started),
+     * and wait for that copy. The bitmap renderer uses them to fetch the
+     * next line's row while it decodes the current one. */
+    bool (*vram_prefetch)(const struct v9990 *v, uint32_t phys, uint8_t *dst, uint32_t len);
+    void (*vram_prefetch_wait)(const struct v9990 *v);
+} v9990_t;
+
+/* ---- lifecycle ---- */
+void v9990_init(v9990_t *v, uint8_t *vram);   /* contiguous 512KB */
+void v9990_init_banks(v9990_t *v, uint8_t *vram0, uint8_t *vram1);
+void v9990_reset(v9990_t *v);
+
+/* ---- bus interface (port = low nibble 0..15) ---- */
+V9990_HOT void    v9990_write_port(v9990_t *v, uint8_t port, uint8_t data);
+/* Read with side effects (auto increment, prefetch...). */
+V9990_HOT uint8_t v9990_read_port(v9990_t *v, uint8_t port);
+/* Value the next read of `port` will return, without side effects.
+ * The firmware pre-loads these into the PIO read-response table. */
+V9990_HOT uint8_t v9990_peek_port(const v9990_t *v, uint8_t port);
+
+static inline bool v9990_irq_pending(const v9990_t *v) {
+    return (v->int_flags & v->regs[V9990_R_INT_ENABLE] & 0x07) != 0;
+}
+
+/* ---- display mode helpers ---- */
+v9990_display_mode_t v9990_display_mode(const v9990_t *v);
+v9990_color_mode_t   v9990_color_mode(const v9990_t *v);
+unsigned v9990_bpp(const v9990_t *v);
+unsigned v9990_image_width(const v9990_t *v);   /* VRAM image width in pixels */
+unsigned v9990_display_width(const v9990_t *v);
+unsigned v9990_display_height(const v9990_t *v);
+
+/* ---- video timing events (called by the video output driver) ---- */
+void v9990_video_vblank_start(v9990_t *v);
+void v9990_video_vblank_end(v9990_t *v);
+void v9990_video_line_start(v9990_t *v, unsigned line);  /* display line 0.. */
+
+/* ---- rendering ---- */
+/* Render display line `line` into `out` as RGB565, `out_width` pixels wide
+ * (the image is scaled/centered to fit, border = backdrop color). */
+V9990_HOT void v9990_render_line(const v9990_t *v, unsigned line,
+                                 uint16_t *out, unsigned out_width);
+uint16_t v9990_backdrop_rgb565(const v9990_t *v);
+
+/* ---- command engine (v9990_cmd.c) ---- */
+void v9990_cmd_start(v9990_t *v);
+/* Advance the running command by up to `budget` pixel operations.
+ * Returns true while the command is still executing. */
+V9990_HOT bool v9990_cmd_step(v9990_t *v, unsigned budget);
+void v9990_cmd_write_data(v9990_t *v, uint8_t data);
+uint8_t v9990_cmd_read_data(v9990_t *v);
+/* When set, v9990_cmd_step returns early (after a minimum run) once the
+ * word it points to changes: the firmware points it at the bus event
+ * ring's write position, so commands run in long slices yet events wait
+ * little. v9990_cmd_reference forces the per-dot code (tests). */
+extern const volatile uint32_t *v9990_cmd_watch;
+extern bool v9990_cmd_reference;
+/* The running command takes a fast path, which watches v9990_cmd_watch
+ * (the firmware hands it a long slice then). */
+bool v9990_cmd_fast(const v9990_t *v);
+
+#endif

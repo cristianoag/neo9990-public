@@ -1,0 +1,40 @@
+{
+  "solid_count": 138,
+  "assembly_bounds_mm": [
+    -57.8500001,
+    -6.0400001,
+    -5.5000001,
+    8.1500001,
+    24.960000100000002,
+    4.400000100000001
+  ],
+  "reimported_valid": true,
+  "status": "NOMINAL VISUAL MODEL - NOT MANUFACTURER MECHANICAL CAD",
+  "pcb_bounds_mm": [
+    -57.8500001,
+    -6.040000100000001,
+    -1e-07,
+    7.150000099999999,
+    23.960000100000002,
+    1.2000001
+  ],
+  "pcb_volume_mm3": 2265.5474362820896,
+  "header_pitch_mm": 2.54,
+  "mounting_pitch_mm": [
+    58,
+    23
+  ],
+  "origin": "Header pin 1 XY; PCB underside Z=0; +Y towards HDMI",
+  "carrier_attachment": {
+    "offset_mm": [
+      0,
+      0,
+      8
+    ],
+    "rotation_deg": [
+      0,
+      0,
+      0
+    ]
+  }
+}

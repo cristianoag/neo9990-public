@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "neo9990")(type "KiCad")(uri "${KIPRJMOD}/neo9990.kicad_sym")(options "")(descr "NEO9990 Core2350B project symbols"))
+)

@@ -1,0 +1,54 @@
+gpio,module_pad,net,function,pio_role,module_side
+GP0,35,A0,MSX address A0,"port number (in pins,12)",right
+GP1,36,A1,MSX address A1,"port number (in pins,12)",right
+GP2,1,A2,MSX address A2,"port number (in pins,12)",right
+GP3,37,A3,MSX address A3,"port number (in pins,12)",right
+GP4,2,D0,MSX data D0,"in pins,12 / out pins,8 / out pindirs,8",right
+GP5,38,D1,MSX data D1,"in pins,12 / out pins,8 / out pindirs,8",right
+GP6,3,D2,MSX data D2,"in pins,12 / out pins,8 / out pindirs,8",right
+GP7,39,D3,MSX data D3,"in pins,12 / out pins,8 / out pindirs,8",right
+GP8,4,D4,MSX data D4,"in pins,12 / out pins,8 / out pindirs,8",right
+GP9,40,D5,MSX data D5,"in pins,12 / out pins,8 / out pindirs,8",right
+GP10,5,D6,MSX data D6,"in pins,12 / out pins,8 / out pindirs,8",right
+GP11,41,D7,MSX data D7,"in pins,12 / out pins,8 / out pindirs,8",right
+GP12,6,DVI_D0_P,HSTX TMDS D0+,HSTX (not PIO),top right (HSTX)
+GP13,42,DVI_D0_N,HSTX TMDS D0-,HSTX (not PIO),top right (HSTX)
+GP14,7,DVI_CK_P,HSTX TMDS clock+,HSTX (not PIO),top right (HSTX)
+GP15,8,DVI_CK_N,HSTX TMDS clock-,HSTX (not PIO),top right (HSTX)
+GP16,43,DVI_D2_P,HSTX TMDS D2+,HSTX (not PIO),top right (HSTX)
+GP17,10,DVI_D2_N,HSTX TMDS D2-,HSTX (not PIO),top right (HSTX)
+GP18,44,DVI_D1_P,HSTX TMDS D1+,HSTX (not PIO),top right (HSTX)
+GP19,11,DVI_D1_N,HSTX TMDS D1-,HSTX (not PIO),top right (HSTX)
+GP20,45,A4,MSX address A4,"decode bits 0-3 (in pins,6)",top
+GP21,12,A5,MSX address A5,"decode bits 0-3 (in pins,6)",top
+GP22,46,A6,MSX address A6,"decode bits 0-3 (in pins,6)",top
+GP23,13,A7,MSX address A7,"decode bits 0-3 (in pins,6)",top
+GP24,47,M1,MSX /M1,decode bit 4 (high = not an interrupt acknowledge),top
+GP25,14,IORQ,MSX /IORQ,decode bit 5 (low = I/O cycle),top
+GP26,48,RD,MSX /RD,jmp pin,top
+GP27,15,WR,MSX /WR,wait gpio,top
+GP28,49,INT,"MSX /INT, drive low only",set pins / pindirs,top
+GP29,16,WAIT,"MSX /WAIT, drive low only (R1 pull-up)",set pins / pindirs,top
+GP30,17,BUSDIR,"MSX /BUSDIR, drive low only (R2 pull-up)",set pins / pindirs,top
+GP31,50,RESET,MSX /RESET (JP1 closed also resets the module),"input, wait / IRQ",top
+GP32,19,,spare,,left (unused)
+GP33,51,,spare,,left (unused)
+GP34,20,,spare,,left (unused)
+GP35,52,,spare,,left (unused)
+GP36,21,,spare,,left (unused)
+GP37,53,,spare,,left (unused)
+GP38,22,,spare,,left (unused)
+GP39,54,,Module red LED (470R to GND): keep off the bus,,left (unused)
+GP40,23,,spare,,left (unused)
+GP41,55,,spare,,left (unused)
+GP42,24,,spare,,left (unused)
+GP43,56,,spare,,left (unused)
+GP44,25,,spare,,left (unused)
+GP45,26,,spare,,left (unused)
+GP46,57,,spare,,left (unused)
+GP47,28,,Module PSRAM chip select (VRAM),QMI / XIP CS1,left (PSRAM CS)
+RUN,32,RUN,"Module reset, reachable from /RESET through JP1 (open)",,bottom
+BOOTSEL,29,BOOTSEL,SW1 to GND,,bottom
+U+/DP,31,USBDP,USB-C D+,,bottom
+U-/DM,30,USBDM,USB-C D-,,bottom
+VBUS,34,+5V,5 V rail (MSX +5V through D1),,bottom

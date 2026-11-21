@@ -1,0 +1,40 @@
+ORANGE PI ZERO 2W - NOMINAL STEP VISUALIZATION
+============================================
+
+File: OrangePi_Zero2W.step
+Generator: ../tools/generate_orangepi_model.py
+CAD backend: cadquery-ocp 8.0.1.1.0 (OpenCascade), Python 3.13.
+
+This model is created for visualization of the NEO9990 prototype. It is not
+manufacturer CAD and must not be used to approve fabrication or enclosure fit.
+
+Referenced dimensions:
+- Nominal PCB: 65 x 30 x 1.2 mm.
+- Nominal Zero-format mounting-hole spacing: 58 x 23 mm; holes 2.7 mm.
+- GPIO: 2x20, 2.54 mm pitch, 1 mm holes.
+
+Estimated, not mechanically verified:
+- Board corner radii, header insulator/pins and mounting-hole datums.
+- Mini-HDMI, both USB-C connectors and microSD shell dimensions/positions.
+- H618, LPDDR4, Wi-Fi/BT shield, PMIC and underside flash envelopes.
+- Connector overhangs, tongue details and all package heights.
+- No heatsink, antenna clearance envelope, cables, socket or screws are modeled.
+
+Coordinates are in millimetres. Origin XY is the inner-row GPIO pin 1.
++X runs towards the nearby right mounting holes; +Y runs towards HDMI.
+PCB underside is Z=0, top is Z=1.2. Male GPIO pins extend down to Z=-5.5.
+KiCad attaches the model at Z=8 mm, so the nominal module underside is 8 mm
+above the board surface. Check the real socket/header stack before assembly.
+
+The model has 138 named, colored solids. The generator checks its PCB volume
+against the rounded-rectangle/hole formula, exports STEP, reimports it and checks
+validity and solid count. See model-validation.json for the measured bounds.
+Round-trip validity is a CAD integrity check, not evidence of dimensional accuracy.
+
+To regenerate in an isolated Python environment:
+  python -m pip install cadquery-ocp==8.0.1.1.0
+  python ..\tools\generate_orangepi_model.py
+
+J2's footprint and PCB instance use the portable project-relative path:
+  ${KIPRJMOD}/models/OrangePi_Zero2W.step
+with scale (1,1,1), rotation (0,0,0), offset (0,0,8) mm.

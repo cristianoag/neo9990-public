@@ -1,0 +1,12 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "TRH9000")(type "KiCad")(uri "C:/Users/Cristiano/OneDrive/Personal/11. Electronics/V9990/Github/trh9000/hardware/Kicad/TRH9000_1.7/Libraries/Symbols/TRH9000.kicad_sym")(options "")(descr ""))
+  (lib (name "MSX_SLOT_EDGE")(type "KiCad")(uri "${KIPRJMOD}/libraries/MSX_SLOT_EDGE.kicad_sym")(options "")(descr ""))
+  (lib (name "SN74LS32N")(type "KiCad")(uri "${KIPRJMOD}/libraries/SN74LS32N.kicad_sym")(options "")(descr ""))
+  (lib (name "YAMAHA")(type "KiCad")(uri "${KIPRJMOD}/libraries/YAMAHA.kicad_sym")(options "")(descr ""))
+  (lib (name "km428c256")(type "KiCad")(uri "${KIPRJMOD}/libraries/km428c256.kicad_sym")(options "")(descr ""))
+  (lib (name "cxa2075m")(type "KiCad")(uri "${KIPRJMOD}/libraries/cxa2075m.kicad_sym")(options "")(descr ""))
+  (lib (name "MD-40SM")(type "KiCad")(uri "${KIPRJMOD}/libraries/MD-40SM.kicad_sym")(options "")(descr ""))
+  (lib (name "MacroSilicon")(type "KiCad")(uri "${KIPRJMOD}/libraries/MacroSilicon.kicad_sym")(options "")(descr ""))
+  (lib (name "PJRAN1X1U02AUX")(type "KiCad")(uri "${KIPRJMOD}/libraries/PJRAN1X1U02AUX.kicad_sym")(options "")(descr ""))
+)
