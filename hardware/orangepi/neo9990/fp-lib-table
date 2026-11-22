@@ -1,1 +1,4 @@
-(fp_lib_table (version 7) (lib (name "neo9990") (type "KiCad") (uri "${KIPRJMOD}/neo9990.pretty") (options "") (descr "Local carrier footprints")))
+(fp_lib_table
+	(version 7)
+	(lib (name "neo9990") (type "KiCad") (uri "${KIPRJMOD}/neo9990.pretty") (options "") (descr "Local carrier footprints"))
+)
