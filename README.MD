@@ -74,7 +74,6 @@ Rev 1.0 has a finished schematic and a routed PCB, and initial tests have been d
 - [Core2350B firmware](docs/core2350b-firmware.md)
 - [KiCad project](hardware/core2350b/neo9990/neo9990.kicad_pro)
 - [GPIO assignment](hardware/core2350b/neo9990/gpio-map.csv)
-- [Third-party notices](software/core2350b/THIRD_PARTY_NOTICES.md)
 
 ## Documentation
 
