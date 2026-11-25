@@ -101,6 +101,10 @@ Contributions are welcome through issues and pull requests. Keep changes scoped 
 
 Hardware changes should include the corresponding fabrication/CAD outputs when applicable. Prototype software and HDL changes should include focused tests and should not claim unverified board-level operation.
 
+## Sponsoring
+
+You can support NEO9990 development through [GitHub Sponsors](https://github.com/sponsors/cristianoag).
+
 ## Third-party notices and references
 
 The NEO9990 Core2350B firmware (`software/core2350b`) builds on the work below.
